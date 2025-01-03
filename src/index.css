@@ -1,33 +1,63 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  --background: #fcfcfc;
+  --primary: #dc3546;
+  --secondary: #f8bcc2;
+  --text-primary: #171717;
+  --text-secondary: #444444;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+
+  @media (max-width: 1080px) {
+    font-size: 93.75%;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 87.5%;
+  }
 }
 
 body {
+  background-color: var(--background);
   display: flex;
-  align-items: center;
   justify-content: center;
-  max-width: 1280px;
+
   margin: 0;
-  padding: 0;
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: 'Montserrat';
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+}
+
+[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a {
+  text-decoration: none;
 }
