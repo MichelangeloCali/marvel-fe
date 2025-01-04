@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { RoutesEnum } from '@/enums/routes';
+import { RoutesEnum } from '@/enums/Routes';
 import { HeroDetailsPage, HomePage } from '@/pages';
 
 export const AppRoutes = () => {
