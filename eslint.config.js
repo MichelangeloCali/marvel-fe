@@ -1,10 +1,10 @@
-import js from '@eslint/js'
-import importPlugin from 'eslint-plugin-import'
-import prettier from 'eslint-plugin-prettier'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
+import js from '@eslint/js';
+import importPlugin from 'eslint-plugin-import';
+import prettier from 'eslint-plugin-prettier';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   js.configs.recommended,
@@ -24,10 +24,8 @@ export default [
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'prettier/prettier': 'error',
       'import/order': [
         'error',
@@ -55,4 +53,4 @@ export default [
       '@typescript-eslint/no-unused-vars': 'error',
     },
   },
-]
+];

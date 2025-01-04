@@ -9,11 +9,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky",
-    "precommit": "yarn lint:fix"
+    "precommit": "yarn lint && yarn lint:fix"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query": "^5.62.0",
     "axios": "^1.7.8",
     "lodash": "^4.17.21",
@@ -21,6 +19,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
+    "@hookform/resolvers": "^3.9.1",
     "react-loader-spinner": "^6.1.6",
     "react-loading-skeleton": "^3.5.0",
     "react-router-dom": "^7.0.1",

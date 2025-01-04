@@ -1,3 +1,4 @@
+import { Input } from './Input';
 import { Layout } from './Layout';
 
-export { Layout };
+export { Input, Layout };

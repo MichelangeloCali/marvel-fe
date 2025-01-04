@@ -8,9 +8,7 @@ export const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path={RoutesEnum.HOME} element={<HomePage />} />
-      </Routes>
 
-      <Routes>
         <Route path={RoutesEnum.HERO_DETAILS} element={<HeroDetailsPage />} />
       </Routes>
     </BrowserRouter>

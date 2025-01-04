@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 120px;
+  height: 160px;
+
+  .image {
+    height: 120px;
+
+    border-bottom: 2px solid red;
+    background-color: grey;
+  }
+
+  .contentInfo {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-size: small;
+      font-weight: 600;
+    }
+
+    img {
+      width: 14px;
+    }
+  }
+}

@@ -1,13 +1,13 @@
 :root {
   --background: #ffffff;
-  --primary: #dc3546;
-  --secondary: #f8bcc2;
+  --primary: #f2283c;
+  --secondary: #fdeaec;
   --text-primary: #171717;
   --text-secondary: #444444;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat';
+  font-family: 'Roboto', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -45,7 +45,7 @@ body,
 input,
 textarea,
 button {
-  font-family: 'Montserrat';
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
