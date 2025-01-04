@@ -23,10 +23,13 @@ export {
   useMutation,
   useQuery,
   useQueryClient,
-  type InfiniteData,
-  type QueryFunctionContext,
-  type UseInfiniteQueryOptions,
-  type UseInfiniteQueryResult,
-  type UseQueryOptions,
-  type UseQueryResult,
+};
+
+export type {
+  InfiniteData,
+  QueryFunctionContext,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
+  UseQueryOptions,
+  UseQueryResult,
 };
