@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from '@/libs/zod';
 
 export const searchSchema = z.object({
   search: z.string().min(3, 'Digite pelo menos 3 caracteres para a busca'),

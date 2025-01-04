@@ -1,10 +1,7 @@
 import { Dispatch, useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Input } from '@/components';
+import { useForm, zodResolver } from '@/libs/reactHookForm';
 
 import styles from './ContentSearch.module.scss';
 
