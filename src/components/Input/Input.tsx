@@ -14,9 +14,9 @@ type InputProps = {
 
 export const Input = ({ name, placeholder, control, error, helperText }: InputProps) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Search className={styles.icon} />
+    <div className={styles.input_container}>
+      <div className={styles.input_content}>
+        <Search className={styles.input_icon} />
 
         <Controller
           name={name}
@@ -33,7 +33,7 @@ export const Input = ({ name, placeholder, control, error, helperText }: InputPr
         />
       </div>
 
-      <span className={styles.errorMessage}>{error && helperText}</span>
+      <span className={styles.input_error_message}>{error && helperText}</span>
     </div>
   );
 };

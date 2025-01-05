@@ -8,9 +8,9 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className={styles.container}>
-      {children}
-      <div className={styles.footer} />
+    <div className={styles.layout_container}>
+      <div className={styles.layout_content}>{children}</div>
+      <div className={styles.layout_footer} />
     </div>
   );
 };

@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { useCharacters } from '@/api';
 
-import { ContentSearch } from './components/ContentSearch';
 import { Header } from './components/Header';
-import { HerosCard } from './components/HerosCard';
+import { HerosContent } from './components/HerosContent';
+import { SearchContent } from './components/SearchContent';
 
 import styles from './HomePage.module.scss';
 
@@ -15,13 +15,11 @@ export const HomePage = () => {
 
   console.log('data', data);
   console.log('searchHero', searchHero);
-
   return (
-    <div className={styles.container}>
+    <div className={styles.home_page_container}>
       <Header />
-      <ContentSearch searchHeroAction={setSearchHero} />
-
-      <HerosCard />
+      <SearchContent searchHeroAction={setSearchHero} />
+      <HerosContent />
     </div>
   );
 };

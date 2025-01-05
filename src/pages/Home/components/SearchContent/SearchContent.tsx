@@ -3,7 +3,7 @@ import { Dispatch, useEffect } from 'react';
 import { Input } from '@/components';
 import { useForm, zodResolver } from '@/libs/reactHookForm';
 
-import styles from './ContentSearch.module.scss';
+import styles from './SearchContent.module.scss';
 
 import { SearchFormData, searchSchema } from '../../utils/schema';
 
@@ -11,7 +11,7 @@ type ContentSearchProps = {
   searchHeroAction: Dispatch<React.SetStateAction<string>>;
 };
 
-export const ContentSearch = ({ searchHeroAction }: ContentSearchProps) => {
+export const SearchContent = ({ searchHeroAction }: ContentSearchProps) => {
   const {
     control,
     watch,
@@ -32,8 +32,8 @@ export const ContentSearch = ({ searchHeroAction }: ContentSearchProps) => {
   }, [searchValue]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.textContent}>
+    <div className={styles.search_container}>
+      <div className={styles.search_text_content}>
         <h1>explore o universo</h1>
 
         <h2>
