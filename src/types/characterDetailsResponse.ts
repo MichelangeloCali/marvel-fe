@@ -3,7 +3,7 @@ import { CharacterSchema } from '@/models/Character';
 
 export const CharacterDetailSchema = z.object({
   data: z.object({
-    results: z.array(CharacterSchema).length(1),
+    results: z.array(CharacterSchema),
   }),
 });
 

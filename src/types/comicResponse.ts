@@ -1,9 +1,9 @@
 import { z } from '@/libs/zod';
-import { ComicSchema } from '@/models/Comic';
+import { ComicListSchema } from '@/models/ComicList';
 
 export const ComicsResponseSchema = z.object({
   data: z.object({
-    results: z.array(ComicSchema),
+    results: z.array(ComicListSchema),
   }),
 });
 
