@@ -9,6 +9,7 @@ import {
 import { safeParse } from '@/utils/safeParseRequest';
 
 import { api } from './api';
+import { queryKeys } from './queryKeys';
 
 const fetchCharacters = async (
   pageParam: number = 0,
@@ -29,7 +30,7 @@ const fetchCharacters = async (
 
 export const useCharacters = (nameStartsWith?: string) =>
   useInfiniteQuery<CharactersResponse>({
-    queryKey: ['characters', nameStartsWith],
+    queryKey: queryKeys.characters(nameStartsWith),
     queryFn: ({ pageParam }: QueryFunctionContext) =>
       fetchCharacters(Number(pageParam), nameStartsWith),
     initialPageParam: 0,
