@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { Header } from './components/Header';
 import { HeroComics } from './components/HeroComics';
-import { HeroContent } from './components/HeroContent';
+import { HeroInfo } from './components/HeroInfo';
 
 import styles from './HeroDetailsPage.module.scss';
 
@@ -14,7 +14,7 @@ export const HeroDetailsPage = () => {
   return (
     <div className={styles.hero_details_page_container}>
       <Header />
-      <HeroContent heroId={heroId} />
+      <HeroInfo heroId={heroId} />
       <HeroComics />
     </div>
   );

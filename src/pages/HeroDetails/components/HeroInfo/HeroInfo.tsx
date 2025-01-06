@@ -9,7 +9,7 @@ import Movies from '@/assets/ic_trailer.svg';
 
 import { useFavoritesStore } from '@/stores/favorites';
 
-import styles from './HeroContent.module.scss';
+import styles from './HeroInfo.module.scss';
 
 import { useCharacterComics } from '../../hooks/useCharacterComics';
 import { useCharacterInfo } from '../../hooks/useCharacterInfo';
@@ -18,7 +18,7 @@ type HeroContentProps = {
   heroId: string;
 };
 
-export const HeroContent = ({ heroId }: HeroContentProps) => {
+export const HeroInfo = ({ heroId }: HeroContentProps) => {
   const { character, imageUrl, name, description, isLoading } = useCharacterInfo(
     heroId || '',
   );
