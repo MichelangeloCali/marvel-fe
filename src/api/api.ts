@@ -23,8 +23,6 @@ api.interceptors.request.use(
       hash,
     };
 
-    console.log('config.params==', config.params);
-
     return config;
   },
   (error) => {

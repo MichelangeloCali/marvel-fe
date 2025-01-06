@@ -1,17 +1,17 @@
-import { Dispatch, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { Input } from '@/components';
 import { useForm, zodResolver } from '@/libs/reactHookForm';
+
+import { useCharactersStore } from '@/stores/characters';
 
 import styles from './SearchContent.module.scss';
 
 import { SearchFormData, searchSchema } from '../../utils/schema';
 
-type ContentSearchProps = {
-  searchHeroAction: Dispatch<React.SetStateAction<string>>;
-};
+export const SearchContent = () => {
+  const { setSearch } = useCharactersStore();
 
-export const SearchContent = ({ searchHeroAction }: ContentSearchProps) => {
   const {
     control,
     watch,
@@ -24,12 +24,8 @@ export const SearchContent = ({ searchHeroAction }: ContentSearchProps) => {
   const searchValue = watch('search');
 
   useEffect(() => {
-    if (searchValue) {
-      searchHeroAction(searchValue);
-    } else {
-      searchHeroAction('');
-    }
-  }, [searchValue]);
+    setSearch(searchValue || '');
+  }, [searchValue, setSearch]);
 
   return (
     <div className={styles.search_container}>
