@@ -54,16 +54,22 @@ export const HerosContent = () => {
       }
     };
 
-    observer.current?.disconnect();
+    if (observer.current) {
+      observer.current.disconnect();
+    }
 
-    observer.current = new IntersectionObserver(loadMoreItems, { rootMargin: '10px' });
+    observer.current = new IntersectionObserver(loadMoreItems, { rootMargin: '800px' });
 
     if (lastHeroRef.current) {
       observer.current.observe(lastHeroRef.current);
     }
 
-    return () => observer.current?.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage, characters]);
 
   if (isLoading && characters.length === 0) {
     return (

@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 import FavoriteOn from '@/assets/favorito_01.svg';
 import FavoriteOff from '@/assets/favorito_02.svg';
 
+import { RoutesEnum } from '@/enums/Routes';
 import type { Character } from '@/models/Character';
 import { useFavoritesStore } from '@/stores/favorites';
 
@@ -11,7 +14,10 @@ type HeroCardProps = {
 };
 
 export const HeroCard = ({ hero }: HeroCardProps) => {
+  const navigate = useNavigate();
+
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
+
   const heroId = String(hero.id);
 
   const toggleFavorite = () => {
@@ -29,12 +35,17 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
     }
   };
 
+  const handleNavigateHeroDetails = () => {
+    navigate(`${RoutesEnum.HERO_DETAILS.replace(':heroId', heroId)}`);
+  };
+
   return (
     <div className={styles.hero_card_container}>
       <img
         className={styles.hero_card_image}
         src={`${hero?.thumbnail?.path}.${hero?.thumbnail?.extension}`}
         alt={hero?.name}
+        onClick={handleNavigateHeroDetails}
       />
 
       <div className={styles.hero_card_content_info}>
