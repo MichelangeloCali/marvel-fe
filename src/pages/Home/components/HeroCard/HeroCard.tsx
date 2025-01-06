@@ -1,48 +1,23 @@
-import { useNavigate } from 'react-router-dom';
-
 import FavoriteOn from '@/assets/favorito_01.svg';
 import FavoriteOff from '@/assets/favorito_02.svg';
 
-import { RoutesEnum } from '@/enums/Routes';
 import type { Character } from '@/models/Character';
-import { useFavoritesStore } from '@/stores/favorites';
 
 import styles from './HeroCard.module.scss';
+
+import { useHeroCard } from '../../hooks/useHeroCard';
 
 type HeroCardProps = {
   hero: Character;
 };
 
 export const HeroCard = ({ hero }: HeroCardProps) => {
-  const navigate = useNavigate();
+  const hookResult = useHeroCard(hero);
 
-  const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
+  if (!hookResult) return null;
 
-  if (!hero.id) return;
-
-  const favoriteStatus = isFavorite(hero.id);
-
-  const toggleFavorite = (event: React.MouseEvent) => {
-    event.stopPropagation();
-
-    if (!hero.id || !hero.name) return;
-
-    if (favoriteStatus) {
-      removeFavorite(hero.id);
-    } else {
-      addFavorite({
-        id: hero.id,
-        name: hero.name,
-        thumbnail: hero.thumbnail,
-      });
-    }
-  };
-
-  const handleNavigateHeroDetails = () => {
-    navigate(`${RoutesEnum.HERO_DETAILS.replace(':heroId', String(hero.id))}`);
-  };
-
-  const thumbnailUrl = `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`;
+  const { favoriteStatus, toggleFavorite, handleNavigateHeroDetails, thumbnailUrl } =
+    hookResult;
 
   return (
     <div className={styles.hero_card_container} onClick={handleNavigateHeroDetails}>
