@@ -1,9 +1,13 @@
 import { z } from '@/libs/zod';
-import { ComicListSchema } from '@/models/ComicList';
+import { ComicSchema } from '@/models/Comic';
 
 export const ComicsResponseSchema = z.object({
   data: z.object({
-    results: z.array(ComicListSchema),
+    offset: z.number(),
+    limit: z.number(),
+    total: z.number(),
+    count: z.number(),
+    results: z.array(ComicSchema),
   }),
 });
 

@@ -1,0 +1,77 @@
+.hero_content_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+
+  .hero_content_info {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 40%;
+
+    .hero_content_name {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: space-between;
+
+      button {
+        border: none;
+        background-color: transparent;
+
+        img {
+          width: 28px;
+        }
+      }
+    }
+
+    .hero_content_description {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        font-size: small;
+        color: var(--text-secondary);
+      }
+
+      .hero_content_comic {
+        display: flex;
+        justify-content: space-between;
+
+        padding-right: 80px;
+
+        p {
+          font-weight: 600;
+        }
+      }
+
+      .hero_content_rating {
+        display: flex;
+
+        p {
+          font-weight: 600;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  .hero_details_page_image {
+    width: 300px;
+    object-fit: cover;
+  }
+}
+
+.loading_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  height: 40vh;
+
+  p {
+    font-size: small;
+    font-weight: 600;
+  }
+}
