@@ -1,16 +1,13 @@
 import { create, persist } from '@/libs/zustand';
+import { Character } from '@/models/Character';
 
-type FavoriteHero = {
-  id: string;
-  name: string;
-  thumbnail: string;
-};
+type CharacterFavorite = Pick<Character, 'id' | 'name'>;
 
 type FavoritesState = {
-  favorites: FavoriteHero[];
-  addFavorite: (hero: FavoriteHero) => void;
-  removeFavorite: (heroId: string) => void;
-  isFavorite: (heroId: string) => boolean;
+  favorites: CharacterFavorite[];
+  addFavorite: (hero: CharacterFavorite) => void;
+  removeFavorite: (heroId: number) => void;
+  isFavorite: (heroId: number) => boolean;
 };
 
 export const useFavoritesStore = create<FavoritesState>()(
@@ -27,12 +24,12 @@ export const useFavoritesStore = create<FavoritesState>()(
         }
       },
 
-      removeFavorite: (heroId) => {
+      removeFavorite: (heroId: number) => {
         const { favorites } = get();
         set({ favorites: favorites.filter((hero) => hero.id !== heroId) });
       },
 
-      isFavorite: (heroId) => {
+      isFavorite: (heroId: number) => {
         const { favorites } = get();
         return favorites.some((hero) => hero.id === heroId);
       },

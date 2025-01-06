@@ -20,8 +20,7 @@ export const HerosContent = () => {
   const { searchHeroAction, orderByName, isOrderByFavoritesOn } = useCharactersStore();
   const { favorites } = useFavoritesStore();
 
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastHeroRef = useRef<HTMLDivElement | null>(null);
+  const observerTarget = useRef(null);
 
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, isSuccess } =
     useCharacters(searchHeroAction, orderByName);
@@ -32,49 +31,51 @@ export const HerosContent = () => {
   );
 
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>(characters);
+  const isLoadingMore =
+    isFetchingNextPage && hasNextPage && filteredCharacters.length > 5;
+  const hasFilteredCharacters = isSuccess && !isLoading && filteredCharacters?.length > 0;
 
   useEffect(() => {
     let filtered = [...characters];
 
     if (isOrderByFavoritesOn) {
-      filtered = favorites
-        .map((fav) => characters.find((char) => String(char.id) === String(fav.id)))
-        .filter(Boolean) as Character[];
+      filtered = favorites;
+    } else {
+      filtered = characters.map((hero) => ({
+        ...hero,
+        isFavorite: favorites.some((fav) => fav.id === hero.id),
+      }));
     }
 
     setFilteredCharacters(filtered);
   }, [characters, isOrderByFavoritesOn, favorites]);
 
   useEffect(() => {
-    if (!hasNextPage || isFetchingNextPage) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1 },
+    );
 
-    const loadMoreItems = ([entry]: IntersectionObserverEntry[]) => {
-      if (entry.isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
-    };
-
-    if (observer.current) {
-      observer.current.disconnect();
-    }
-
-    observer.current = new IntersectionObserver(loadMoreItems, { rootMargin: '800px' });
-
-    if (lastHeroRef.current) {
-      observer.current.observe(lastHeroRef.current);
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
     }
 
     return () => {
-      if (observer.current) {
-        observer.current.disconnect();
+      if (observerTarget.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(observerTarget.current);
       }
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage, characters]);
+  }, [fetchNextPage, hasNextPage, observerTarget]);
 
   if (isLoading && characters.length === 0) {
     return (
       <div className={styles.loading_container}>
-        <ClipLoader color="#f2283c" size={30} />
+        <ClipLoader color="#f2283c" size={28} />
         <p>Carregando heróis...</p>
       </div>
     );
@@ -91,24 +92,20 @@ export const HerosContent = () => {
       <HerosFiltersMemo filteredCharacters={filteredCharacters} />
 
       <div className={styles.heros_content}>
-        {filteredCharacters?.length > 0 &&
-          filteredCharacters.map((hero, index) => {
-            const isLastHero = index === filteredCharacters.length - 1;
+        {hasFilteredCharacters &&
+          filteredCharacters.map((hero) => {
             return (
-              <div
-                key={hero.id}
-                ref={isLastHero ? lastHeroRef : null}
-                className={styles.hero_card_wrapper}
-              >
+              <div key={hero.id} className={styles.hero_card_wrapper}>
                 <HeroCard hero={hero} />
               </div>
             );
           })}
+        <div ref={observerTarget}></div>
       </div>
 
-      {isFetchingNextPage && (
+      {isLoadingMore && (
         <div className={styles.loading_next}>
-          <ClipLoader color="#f2283c" size={30} />
+          <ClipLoader color="#fdeaec" size={22} />
           <p>Carregando mais heróis...</p>
         </div>
       )}

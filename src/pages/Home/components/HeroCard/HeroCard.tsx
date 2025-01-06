@@ -18,32 +18,41 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
 
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
 
-  const heroId = String(hero.id);
+  if (!hero.id) return;
+
+  const favoriteStatus = isFavorite(hero.id);
 
   const toggleFavorite = () => {
     if (!hero.id || !hero.name || !hero.thumbnail?.path || !hero.thumbnail?.extension)
       return;
 
-    if (isFavorite(heroId)) {
-      removeFavorite(heroId);
+    if (isFavorite(hero.id)) {
+      removeFavorite(hero.id);
     } else {
       addFavorite({
-        id: heroId,
+        id: hero.id,
         name: hero.name,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         thumbnail: `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`,
       });
     }
   };
 
   const handleNavigateHeroDetails = () => {
-    navigate(`${RoutesEnum.HERO_DETAILS.replace(':heroId', heroId)}`);
+    navigate(`${RoutesEnum.HERO_DETAILS.replace(':heroId', String(hero.id))}`);
   };
+
+  const thumbnailUrl =
+    typeof hero.thumbnail === 'string'
+      ? hero.thumbnail
+      : `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`;
 
   return (
     <div className={styles.hero_card_container}>
       <img
         className={styles.hero_card_image}
-        src={`${hero?.thumbnail?.path}.${hero?.thumbnail?.extension}`}
+        src={thumbnailUrl}
         alt={hero?.name}
         onClick={handleNavigateHeroDetails}
       />
@@ -55,12 +64,12 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
           className={styles.favorite_button}
           onClick={toggleFavorite}
           aria-label={
-            isFavorite(heroId) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
+            favoriteStatus ? 'Remover dos favoritos' : 'Adicionar aos favoritos'
           }
         >
           <img
-            src={isFavorite(heroId) ? FavoriteOn : FavoriteOff}
-            alt={isFavorite(heroId) ? 'Favorito' : 'Não Favorito'}
+            src={favoriteStatus ? FavoriteOn : FavoriteOff}
+            alt={favoriteStatus ? 'Favorito' : 'Não Favorito'}
           />
         </button>
       </div>

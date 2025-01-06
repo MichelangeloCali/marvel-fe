@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+
+import { debounce } from 'lodash';
 
 import { Input } from '@/components';
 import { useForm, zodResolver } from '@/libs/reactHookForm';
@@ -23,10 +25,25 @@ export const SearchContent = () => {
 
   const searchValue = watch('search');
 
-  useEffect(() => {
-    setSearch(searchValue || '');
-  }, [searchValue, setSearch]);
+  const debounceSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        if (value.length >= 3) {
+          setSearch(value);
+        } else {
+          setSearch('');
+        }
+      }, 500),
+    [setSearch],
+  );
 
+  useEffect(() => {
+    debounceSearch(searchValue || '');
+
+    return () => {
+      debounceSearch.cancel();
+    };
+  }, [searchValue, debounceSearch]);
   return (
     <div className={styles.search_container}>
       <div className={styles.search_text_content}>
