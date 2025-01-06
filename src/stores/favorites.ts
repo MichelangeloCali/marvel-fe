@@ -29,9 +29,9 @@ export const useFavoritesStore = create<FavoritesState>()(
         set({ favorites: favorites.filter((hero) => hero.id !== heroId) });
       },
 
-      isFavorite: (heroId: number) => {
+      isFavorite: (heroId: number | string) => {
         const { favorites } = get();
-        return favorites.some((hero) => hero.id === heroId);
+        return favorites.some((hero) => String(hero.id) === String(heroId));
       },
     }),
 

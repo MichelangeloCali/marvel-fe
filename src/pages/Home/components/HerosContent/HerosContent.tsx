@@ -31,8 +31,10 @@ export const HerosContent = () => {
   );
 
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>(characters);
+
   const isLoadingMore =
-    isFetchingNextPage && hasNextPage && filteredCharacters.length > 5;
+    isFetchingNextPage && hasNextPage && !isOrderByFavoritesOn && characters.length > 5;
+
   const hasFilteredCharacters = isSuccess && !isLoading && filteredCharacters?.length > 0;
 
   useEffect(() => {
