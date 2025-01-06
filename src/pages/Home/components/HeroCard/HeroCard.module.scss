@@ -8,6 +8,7 @@
   .hero_card_image {
     height: 120px;
 
+    object-fit: cover;
     border-bottom: 2px solid red;
     background-color: grey;
   }

@@ -1,13 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 
 import { ClipLoader } from 'react-spinners';
 
 import { useCharacters } from '@/api/useCharacters';
-import FavoritesOn from '@/assets/favorito_01.svg';
-import FavoritesOff from '@/assets/favorito_02.svg';
-import OrderIcon from '@/assets/ic_heroi.svg';
-import ToggleOff from '@/assets/toggle_off.svg';
-import ToggleOn from '@/assets/toggle_on.svg';
 
 import type { Character } from '@/models/Character';
 
@@ -17,15 +12,16 @@ import { useFavoritesStore } from '@/stores/favorites';
 import styles from './HerosContent.module.scss';
 
 import { HeroCard } from '../HeroCard';
+import { HerosFilters } from '../HerosFilters';
+
+const HerosFiltersMemo = memo(HerosFilters);
 
 export const HerosContent = () => {
-  const {
-    searchHeroAction,
-    orderByName,
-    isOrderByFavoritesOn,
-    setOrderByName,
-    toggleOrderByFavorites,
-  } = useCharactersStore();
+  const { searchHeroAction, orderByName, isOrderByFavoritesOn } = useCharactersStore();
+  const { favorites } = useFavoritesStore();
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastHeroRef = useRef<HTMLDivElement | null>(null);
 
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, isSuccess } =
     useCharacters(searchHeroAction, orderByName);
@@ -36,11 +32,6 @@ export const HerosContent = () => {
   );
 
   const [filteredCharacters, setFilteredCharacters] = useState<Character[]>(characters);
-
-  const { favorites } = useFavoritesStore();
-
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastHeroRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let filtered = [...characters];
@@ -91,38 +82,7 @@ export const HerosContent = () => {
 
   return (
     <div className={styles.heros_container}>
-      <div className={styles.heros_info_content}>
-        <p>Encontrados {filteredCharacters.length} heróis</p>
-
-        <div className={styles.heros_order_content}>
-          <div className={styles.heros_filter_toggle}>
-            <img src={OrderIcon} alt="icon ordenar" />
-            <p>Ordenar por nome - {orderByName === 'name' ? 'A/Z' : 'Z/A'}</p>
-
-            <img
-              src={orderByName === 'name' ? ToggleOn : ToggleOff}
-              alt={orderByName === 'name' ? 'Ordenar Z/A' : 'Ordenar A/Z'}
-              className={styles.heros_filter_toggle_icon}
-              onClick={() => {
-                const newOrder = orderByName === 'name' ? '-name' : 'name';
-                setOrderByName(newOrder);
-              }}
-            />
-          </div>
-
-          <button className={styles.heros_favorites} onClick={toggleOrderByFavorites}>
-            <img
-              src={isOrderByFavoritesOn ? FavoritesOn : FavoritesOff}
-              alt={
-                isOrderByFavoritesOn
-                  ? 'Não filtrar por favoritos'
-                  : 'Filtrar por favoritos'
-              }
-            />
-            <p>Somente favoritos</p>
-          </button>
-        </div>
-      </div>
+      <HerosFiltersMemo filteredCharacters={filteredCharacters} />
 
       <div className={styles.heros_content}>
         {filteredCharacters?.length > 0 &&
