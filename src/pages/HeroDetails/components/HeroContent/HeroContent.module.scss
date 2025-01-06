@@ -34,14 +34,38 @@
         color: var(--text-secondary);
       }
 
-      .hero_content_comic {
-        display: flex;
-        justify-content: space-between;
+      :last-child {
+        font-weight: 600;
+      }
 
-        padding-right: 80px;
+      .hero_content_comics {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
         p {
           font-weight: 600;
+        }
+
+        span {
+          font-size: small;
+          font-weight: 500;
+        }
+
+        .hero_content_comic {
+          div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+        }
+
+        .hero_content_movie {
+          div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
         }
       }
 

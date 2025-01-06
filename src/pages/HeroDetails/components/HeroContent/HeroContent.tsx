@@ -71,17 +71,17 @@ export const HeroContent = ({ heroId }: HeroContentProps) => {
         </div>
 
         <div className={styles.hero_content_description}>
-          <p>{description || 'Descrição não disponível.'}</p>
+          <p>{description}</p>
 
-          <div className={styles.hero_content_comic}>
-            <div>
+          <div className={styles.hero_content_comics}>
+            <div className={styles.hero_content_comic}>
               <p>Quadrinhos</p>
               <div>
                 <img src={Comics} alt="Quadrinhos" />
                 <span>{comicsCount}</span>
               </div>
             </div>
-            <div>
+            <div className={styles.hero_content_movie}>
               <p>Filmes</p>
               <div>
                 <img src={Movies} alt="Filmes" />
