@@ -1,0 +1,12 @@
+.header_container {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 200px;
+
+    @media (max-width: 1080px) {
+      width: 120px;
+    }
+  }
+}

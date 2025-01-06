@@ -8,8 +8,8 @@ import {
 
 import { safeParse } from '@/utils/safeParseRequest';
 
-import { api } from './api';
-import { queryKeys } from './queryKeys';
+import { api } from '../api';
+import { queryKeys } from '../queryKeys';
 
 export type OrderBy = 'name' | '-name';
 

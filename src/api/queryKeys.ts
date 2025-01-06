@@ -4,4 +4,5 @@ export const queryKeys = {
     nameStartsWith,
     orderBy,
   ],
+  characterDetails: (characterId: string) => ['characterDetails', characterId],
 };

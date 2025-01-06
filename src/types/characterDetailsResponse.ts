@@ -1,10 +1,14 @@
 import { z } from '@/libs/zod';
 import { CharacterSchema } from '@/models/Character';
 
-export const CharacterDetailSchema = z.object({
+export const CharacterDetailResponseSchema = z.object({
   data: z.object({
+    offset: z.number(),
+    limit: z.number(),
+    total: z.number(),
+    count: z.number(),
     results: z.array(CharacterSchema),
   }),
 });
 
-export type CharacterDetail = z.infer<typeof CharacterDetailSchema>;
+export type CharacterDetailResponse = z.infer<typeof CharacterDetailResponseSchema>;

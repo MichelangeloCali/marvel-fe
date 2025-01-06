@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { useCharacters } from '@/api';
+import { useCharacters } from '@/api/characters';
 import { Character } from '@/models/Character';
 import { useCharactersStore } from '@/stores/characters';
 import { useFavoritesStore } from '@/stores/favorites';
