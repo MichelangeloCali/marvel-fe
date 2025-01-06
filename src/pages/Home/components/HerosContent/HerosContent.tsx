@@ -55,7 +55,7 @@ export const HerosContent = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasNextPage) {
+        if (entries[0].isIntersecting && hasNextPage && !isOrderByFavoritesOn) {
           fetchNextPage();
         }
       },
@@ -72,7 +72,7 @@ export const HerosContent = () => {
         observer.unobserve(observerTarget.current);
       }
     };
-  }, [fetchNextPage, hasNextPage, observerTarget]);
+  }, [fetchNextPage, hasNextPage, observerTarget, isOrderByFavoritesOn]);
 
   if (isLoading && characters.length === 0) {
     return (

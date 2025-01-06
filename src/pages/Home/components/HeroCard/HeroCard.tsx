@@ -22,19 +22,18 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
 
   const favoriteStatus = isFavorite(hero.id);
 
-  const toggleFavorite = () => {
-    if (!hero.id || !hero.name || !hero.thumbnail?.path || !hero.thumbnail?.extension)
-      return;
+  const toggleFavorite = (event: React.MouseEvent) => {
+    event.stopPropagation();
 
-    if (isFavorite(hero.id)) {
+    if (!hero.id || !hero.name) return;
+
+    if (favoriteStatus) {
       removeFavorite(hero.id);
     } else {
       addFavorite({
         id: hero.id,
         name: hero.name,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        thumbnail: `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`,
+        thumbnail: hero.thumbnail,
       });
     }
   };
@@ -43,22 +42,14 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
     navigate(`${RoutesEnum.HERO_DETAILS.replace(':heroId', String(hero.id))}`);
   };
 
-  const thumbnailUrl =
-    typeof hero.thumbnail === 'string'
-      ? hero.thumbnail
-      : `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`;
+  const thumbnailUrl = `${hero.thumbnail?.path}.${hero.thumbnail?.extension}`;
 
   return (
-    <div className={styles.hero_card_container}>
-      <img
-        className={styles.hero_card_image}
-        src={thumbnailUrl}
-        alt={hero?.name}
-        onClick={handleNavigateHeroDetails}
-      />
+    <div className={styles.hero_card_container} onClick={handleNavigateHeroDetails}>
+      <img className={styles.hero_card_image} src={thumbnailUrl} alt={hero?.name} />
 
       <div className={styles.hero_card_content_info}>
-        <p className={styles.hero_card_name}>{hero.name}</p>
+        <p>{hero.name}</p>
 
         <button
           className={styles.favorite_button}

@@ -1,7 +1,7 @@
 import { create, persist } from '@/libs/zustand';
 import { Character } from '@/models/Character';
 
-type CharacterFavorite = Pick<Character, 'id' | 'name'>;
+type CharacterFavorite = Pick<Character, 'id' | 'name' | 'thumbnail'>;
 
 type FavoritesState = {
   favorites: CharacterFavorite[];
@@ -24,9 +24,16 @@ export const useFavoritesStore = create<FavoritesState>()(
         }
       },
 
-      removeFavorite: (heroId: number) => {
+      removeFavorite: (heroId: number | string) => {
         const { favorites } = get();
-        set({ favorites: favorites.filter((hero) => hero.id !== heroId) });
+        const heroIdStr = String(heroId);
+        const updatedFavorites = favorites.filter(
+          (hero) => String(hero.id) !== heroIdStr,
+        );
+
+        set({
+          favorites: updatedFavorites,
+        });
       },
 
       isFavorite: (heroId: number | string) => {
