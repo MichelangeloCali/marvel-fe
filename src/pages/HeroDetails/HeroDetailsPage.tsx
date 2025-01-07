@@ -14,8 +14,11 @@ export const HeroDetailsPage = () => {
   return (
     <div className={styles.hero_details_page_container}>
       <Header />
-      <HeroInfo heroId={heroId} />
-      <HeroComics />
+
+      <div className={styles.hero_details_page_content}>
+        <HeroInfo heroId={heroId} />
+        <HeroComics heroId={heroId} />
+      </div>
     </div>
   );
 };

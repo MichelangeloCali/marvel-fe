@@ -5,5 +5,9 @@ export const queryKeys = {
     orderBy,
   ],
   characterDetails: (characterId: string) => ['characterDetails', characterId],
-  characterComics: (characterId: string) => ['characterComics', characterId],
+  characterComics: (characterId: string, orderBy?: string) => [
+    'characterComics',
+    characterId,
+    orderBy,
+  ],
 };

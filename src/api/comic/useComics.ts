@@ -9,19 +9,24 @@ import { queryKeys } from '../queryKeys';
 
 export type OrderBy = 'name' | '-name';
 
-const fetchCharacterComics = async (characterId: string): Promise<ComicsResponse> => {
+const fetchCharacterComics = async (
+  characterId: string,
+  orderBy?: string,
+): Promise<ComicsResponse> => {
   const path = PathsEnum.CHARACTER_COMICS.replace('{characterId}', characterId);
 
-  const { data } = await api.get<ComicsResponse>(path);
+  const params = orderBy === '-onsaleDate' ? { orderBy: '-onsaleDate', limit: 10 } : {};
+
+  const { data } = await api.get<ComicsResponse>(path, { params });
 
   safeParse(ComicsResponseSchema, data);
 
   return data;
 };
 
-export const useComics = (characterId: string) =>
+export const useComics = (characterId: string, orderBy?: string) =>
   useQuery<ComicsResponse>({
-    queryKey: queryKeys.characterComics(characterId),
-    queryFn: () => fetchCharacterComics(characterId),
+    queryKey: queryKeys.characterComics(characterId, orderBy),
+    queryFn: () => fetchCharacterComics(characterId, orderBy),
     enabled: !!characterId,
   });

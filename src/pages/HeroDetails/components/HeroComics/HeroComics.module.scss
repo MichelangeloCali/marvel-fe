@@ -1,3 +1,25 @@
 .hero_comics_container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+
+  .hero_comics_list {
+    display: flex;
+    column-gap: 2.5rem;
+    flex-wrap: wrap;
+
+    .hero_comic_item {
+      display: flex;
+      flex-direction: column;
+
+      width: 80px;
+
+      img {
+        width: 80px;
+      }
+
+      h4 {
+        font-size: small;
+      }
+    }
+  }
 }
