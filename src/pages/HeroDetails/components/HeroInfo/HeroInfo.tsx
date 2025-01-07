@@ -58,6 +58,8 @@ export const HeroInfo = ({ heroId }: HeroContentProps) => {
 
   return (
     <div className={styles.hero_content_container}>
+      <div className={styles.hero_content_title}>{name.split(' ')[0]}</div>
+
       <div className={styles.hero_content_info}>
         <div className={styles.hero_content_name}>
           <h1>{name}</h1>

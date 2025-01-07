@@ -2,6 +2,23 @@
   display: flex;
   justify-content: space-between;
   gap: 2rem;
+  position: relative;
+
+  .hero_content_title {
+    position: absolute;
+    top: -180px;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 7vw;
+    color: var(--secondary);
+    text-align: center;
+    line-height: 100vh;
+    z-index: -1;
+    font-weight: bold;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
 
   .hero_content_info {
     display: flex;
@@ -83,6 +100,7 @@
   .hero_details_page_image {
     width: 300px;
     object-fit: cover;
+    border-radius: 50%;
   }
 }
 
