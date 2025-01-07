@@ -65,6 +65,11 @@ VITE_MARVEL_PRIVATE_KEY=
 VITE_MARVEL_PUBLIC_KEY=
 ```
 
+## Rodar os testes E2E:
+
+Para rodar os testes, basta iniciar o servidor local com `yarn dev` em seguida, em outro terminal, rode o comando `yarn cypress`.
+
+
 ### Contato do desenvolvedor:
 
 - [LinkedIn](https://www.linkedin.com/in/michelangelocali/)
