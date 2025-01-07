@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# App Marvel Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link de Produção você pode acessar aqui
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## O projeto foi desenvolvido com as seguintes stacks
 
-## Expanding the ESLint configuration
+- React js
+- Typescript (para tipagem em tempo de desenvolvimento, visando boas práticas de código em legibilidade e manuntenibilidade).
+- SCSS (SASS apenas para mixins, aninhamento de classes, sem Libs UIs). 
+- React Router Dom.
+- Zustand e Context API.
+- React Query (tanstack).
+- Axios.
+- Zod para validações e type checks.
+- React Rook Form.
+- Dayjs (para datas).
+- Husky (precommit ativando eslint e prettier automaticamente, como boa prática de padronização).
+- Eslint.
+- Prettier.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Arquitetura do Software e padrão
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+/public
+/src
+  └── /assets
+  └── /api
+  └── /configs
+  └── /components
+  └── /enums
+  └── /hooks
+  └── /libs
+  └── /models
+  └── /routes
+  └── /stores
+  └── /pages
+  └── /types
+  └── /utils
+/App.tsx
+/index.css
+/main.tsx
+/vite-env.d.ts
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Rodar o projeto localmente:
+Para rodar o projeto clone esse repositório, navegue até o diretório raiz e instale o `yarn`, tenha certeza de possuir o Node v.20 instalado globalmente em seu computador.
+Em seguida, rode o comando `yarn dev` para rodar no navegador.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Você precisará ter acesso as envs:
 ```
+ # base URL
+VITE_API_BASE_URL=
+
+# Marvel API Key 
+VITE_MARVEL_PRIVATE_KEY=
+VITE_MARVEL_PUBLIC_KEY=
+```
+
+### Contato do desenvolvedor:
+
+- [LinkedIn](https://www.linkedin.com/in/michelangelocali/)
+- Email: michelangelocali@hotmail.com
+
