@@ -2,6 +2,10 @@
   display: grid;
   grid-template-rows: auto auto;
 
+  @media (max-width: 1080px) {
+    grid-template-rows: auto;
+  }
+
   .hero_details_page_content {
     display: grid;
     gap: 2rem;
@@ -9,6 +13,11 @@
     padding-right: 12px;
     height: calc(100vh - 120px);
     overflow-y: auto;
+
+    @media (max-width: 1080px) {
+      height: calc(100vh - 100px);
+      padding-right: 0;
+    }
 
     ::-webkit-scrollbar {
       width: 4px;
