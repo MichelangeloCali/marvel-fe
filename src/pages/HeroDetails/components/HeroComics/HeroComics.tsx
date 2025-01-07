@@ -9,7 +9,7 @@ type HeroComicsProps = {
 export const HeroComics = ({ heroId }: HeroComicsProps) => {
   const { data, isLoading, isError } = useComics(heroId || '', '-onsaleDate');
 
-  if (isLoading) return <div>Carregando...</div>;
+  if (isLoading) return null;
   if (isError) return <div>Erro ao carregar quadrinhos.</div>;
 
   const comics = data?.data.results || [];
