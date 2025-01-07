@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "precommit": "yarn lint && yarn lint:fix"
+    "precommit": "yarn lint && yarn lint:fix",
+    "cypress": "cypress run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

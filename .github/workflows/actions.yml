@@ -1,0 +1,40 @@
+name: General Jobs
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  general:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - run: yarn install
+
+      - name: lint
+        run: yarn run lint
+
+      - name: Start server
+        run: |
+          yarn start &
+
+          npx wait-on http://localhost:5173
+        env:
+          CYPRESS_baseUrl: http://localhost:5173
+
+      - name: Run Cypress Tests
+        run: yarn run cypress run
+        env:
+          CYPRESS_baseUrl: http://localhost:5173
