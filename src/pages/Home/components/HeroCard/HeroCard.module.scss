@@ -16,11 +16,20 @@
     opacity: 0.9;
   }
 
+  @media (max-width: 424px) {
+    width: 160px;
+    height: 180px;
+  }
+
   .hero_card_image {
     height: 120px;
 
     object-fit: cover;
     border-bottom: 2px solid red;
+
+    @media (max-width: 424px) {
+      height: 150px;
+    }
   }
 
   .hero_card_content_info {
