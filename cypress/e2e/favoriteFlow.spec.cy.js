@@ -1,11 +1,10 @@
-Cypress.on('uncaught:exception', (err, runnable) => {
-  return false;
-});
-
 describe('favorite flow spec', () => {
   it('passes', () => {
-    cy.intercept('GET', 'https://gateway.marvel.com/v1/public/characters*', {
-      fixture: 'characters.json',
+    cy.intercept('GET', 'https://gateway.marvel.com/v1/public/characters*', (req) => {
+      req.reply({
+        statusCode: 200,
+        fixture: 'characters.json',
+      });
     }).as('marvelCharacters');
 
     cy.visit('http://localhost:5173/');

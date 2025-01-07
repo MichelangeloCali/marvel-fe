@@ -26,15 +26,15 @@ jobs:
       - name: lint
         run: yarn lint
 
-      - name: Start server
-        run: |
-          yarn dev &
+      # - name: Start server
+      #   run: |
+      #     yarn dev &
 
-          npx wait-on http://localhost:5173
-        env:
-          CYPRESS_baseUrl: http://localhost:5173
+      #     npx wait-on http://localhost:5173
+      #   env:
+      #     CYPRESS_baseUrl: http://localhost:5173
 
-      - name: Run Cypress Tests
-        run: yarn cypress
-        env:
-          CYPRESS_baseUrl: http://localhost:5173
+      # - name: Run Cypress Tests
+      #   run: yarn cypress
+      #   env:
+      #     CYPRESS_baseUrl: http://localhost:5173
