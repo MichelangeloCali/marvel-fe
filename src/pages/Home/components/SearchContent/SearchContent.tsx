@@ -47,9 +47,9 @@ export const SearchContent = () => {
   return (
     <div className={styles.search_container}>
       <div className={styles.search_text_content}>
-        <h1>explore o universo</h1>
+        <h1 data-testid="cypress-title">explore o universo</h1>
 
-        <h2>
+        <h2 data-testid="cypress-subtitle">
           Mergulhe no domínio deslumbrante de todos os personagens clássicos que você ama
           - e aqueles que você descobrirá em breve!
         </h2>

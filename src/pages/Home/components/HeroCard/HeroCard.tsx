@@ -20,13 +20,18 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
     hookResult;
 
   return (
-    <div className={styles.hero_card_container} onClick={handleNavigateHeroDetails}>
+    <div
+      data-testid="cypress-hero-card"
+      className={styles.hero_card_container}
+      onClick={handleNavigateHeroDetails}
+    >
       <img className={styles.hero_card_image} src={thumbnailUrl} alt={hero?.name} />
 
       <div className={styles.hero_card_content_info}>
         <p>{hero.name}</p>
 
         <button
+          data-testid="cypress-hero-card-button-favorite"
           className={styles.favorite_button}
           onClick={toggleFavorite}
           aria-label={
@@ -34,6 +39,7 @@ export const HeroCard = ({ hero }: HeroCardProps) => {
           }
         >
           <img
+            data-testid="cypress-hero-card-img-favorite"
             src={favoriteStatus ? FavoriteOn : FavoriteOff}
             alt={favoriteStatus ? 'Favorito' : 'Não Favorito'}
           />

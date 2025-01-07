@@ -1,10 +1,15 @@
 {
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "compilerOptions": {
     "baseUrl": ".",
+    "composite": true,
+    "types": ["cypress"],
+    "emitDeclarationOnly": true,
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["cypress", "src"],
+  // @ts-ignore -> https://github.com/nrwl/nx/issues/27292
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }

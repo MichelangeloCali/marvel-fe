@@ -37,8 +37,13 @@ export const HerosFilters = ({ filteredCharacters }: HerosFiltersProps) => {
           />
         </div>
 
-        <button className={styles.heros_favorites} onClick={toggleOrderByFavorites}>
+        <button
+          data-testid="cypress-button-filter-favorite"
+          className={styles.heros_favorites}
+          onClick={toggleOrderByFavorites}
+        >
           <img
+            data-testid="cypress-img-favorite"
             src={isOrderByFavoritesOn ? FavoritesOn : FavoritesOff}
             alt={
               isOrderByFavoritesOn ? 'Não filtrar por favoritos' : 'Filtrar por favoritos'
