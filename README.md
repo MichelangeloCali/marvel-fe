@@ -17,6 +17,9 @@ Link de Produção você pode acessar [aqui](https://marvel-fe.vercel.app/)
 - Husky (precommit ativando eslint e prettier automaticamente, como boa prática de padronização).
 - Eslint.
 - Prettier.
+- Cypress E2E
+- Actions Github (CI)
+- Vercel (CD)
 
 ## Arquitetura do Software e padrão
 
@@ -41,6 +44,10 @@ Link de Produção você pode acessar [aqui](https://marvel-fe.vercel.app/)
 /main.tsx
 /vite-env.d.ts
 ```
+
+``Foi criado Testes E2E com Cypress para o flow de favoritar, onde testa quando o Usuário abre a aplicação, favorita um ou mais Herói e em seguida filtra a visualização para mostrar apenas os favoritos.``
+
+``Foi criado também uma pipeline de CI com Actions do Github, adicionanto lint, typecheck. Em seguida, a aplicação é deployada automaticamente (CD) pela Vercel.``
 
 ## Rodar o projeto localmente:
 
