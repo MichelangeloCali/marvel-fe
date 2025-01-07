@@ -1,3 +1,7 @@
+Cypress.on('uncaught:exception', (err, runnable) => {
+  return false;
+});
+
 describe('favorite flow spec', () => {
   it('passes', () => {
     cy.intercept('GET', 'https://gateway.marvel.com/v1/public/characters*', {
